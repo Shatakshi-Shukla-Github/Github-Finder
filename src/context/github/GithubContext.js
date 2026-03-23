@@ -23,13 +23,16 @@ export const GithubProvider = ({ children }) => {
   // 1) Calls API
   // 2) Gets data
   // 3) Stores it in users
-  const fetchUsers = async () => {
+  const searchUsers = async (text) => {
     setLoading();
-    const response = await fetch(`${GITHUB_URL}/users`);
-    const data = await response.json();
+    const params=new URLSearchParams({
+      q:text
+    })
+    const response = await fetch(`${GITHUB_URL}/search/users/?${params}`);
+    const {items} = await response.json();
     dispatch({
       type:"GET_USERS",
-      payload:data,
+      payload:items,
     })
   };
   const setLoading=()=>dispatch({type:"SET_LOADING"})
@@ -40,7 +43,7 @@ export const GithubProvider = ({ children }) => {
     // 1) users
     // 2) loading
     // 3) fetchUsers
-    <GithubContext.Provider value={{ users:state.users, loading:state.loading, fetchUsers }}>
+    <GithubContext.Provider value={{ users:state.users, loading:state.loading, searchUsers }}>
       {/* What is {children}?
       This means:
       “Whatever is wrapped inside GithubProvider in App.js” */}
