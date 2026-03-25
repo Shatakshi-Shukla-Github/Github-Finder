@@ -35,6 +35,7 @@ export const GithubProvider = ({ children }) => {
       payload:items,
     })
   };
+  const clearUsers=()=>dispatch({type:"CLEAR_USERS"})
   const setLoading=()=>dispatch({type:"SET_LOADING"})
   // const clearUsers=()=>{
   //   dispatch({type:"DELETE_USERS"})
@@ -45,7 +46,7 @@ export const GithubProvider = ({ children }) => {
     // 1) users
     // 2) loading
     // 3) fetchUsers
-    <GithubContext.Provider value={{ users:state.users, loading:state.loading, searchUsers, }}>
+    <GithubContext.Provider value={{ users:state.users, loading:state.loading, searchUsers,clearUsers }}>
       {/* What is {children}?
       This means:
       “Whatever is wrapped inside GithubProvider in App.js” */}
