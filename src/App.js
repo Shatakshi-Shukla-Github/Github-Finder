@@ -6,14 +6,17 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import { GithubProvider } from "./context/github/GithubContext";
 import { AlertProvider } from "./context/github/alert/AlertContext";
- function App() {
+import Alert from "./components/layout/Alert";
+function App() {
   return (
-    <GithubProvider>    
+    <GithubProvider>
+      <AlertProvider>    
       <Router>
       <div className="flex flex-col justify-between h-screen">
         <Navbar title={"Github Finder"}/>
 
          <main className="container mx-auto px-3 pb-12">
+          <Alert/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/about" element={<About/>}/>
@@ -24,6 +27,7 @@ import { AlertProvider } from "./context/github/alert/AlertContext";
         <Footer/>
       </div>
     </Router>
+    </AlertProvider>
     </GithubProvider>
   );
 }
