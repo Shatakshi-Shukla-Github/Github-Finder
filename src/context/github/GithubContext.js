@@ -11,6 +11,7 @@ const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 export const GithubProvider = ({ children }) => {
   const initialState={
     users:[],
+    user:{},
     loading:false,
   }
 
@@ -35,6 +36,23 @@ export const GithubProvider = ({ children }) => {
       payload:items,
     })
   };
+
+//Search function for Single User:-
+const  getUser= async (login) => {
+    setLoading();
+    let response = await fetch(`${GITHUB_URL}/users/${login}`);
+    if(response.status===404){
+      window.location="/notfound"
+    }else{
+     const data = await response.json();
+    dispatch({
+      type:"GET_USER",
+      payload:data,
+    }) 
+    }
+  };
+
+
   const clearUsers=()=>dispatch({type:"CLEAR_USERS"})
   const setLoading=()=>dispatch({type:"SET_LOADING"})
   // const clearUsers=()=>{
@@ -46,7 +64,7 @@ export const GithubProvider = ({ children }) => {
     // 1) users
     // 2) loading
     // 3) fetchUsers
-    <GithubContext.Provider value={{ users:state.users, loading:state.loading, searchUsers,clearUsers }}>
+    <GithubContext.Provider value={{ users:state.users, loading:state.loading,user:state.user, searchUsers,clearUsers,getUser, }}>
       {/* What is {children}?
       This means:
       “Whatever is wrapped inside GithubProvider in App.js” */}

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 // By assigning user as an object (that has two keys i.e. login and avatar_url) so therefore we dont have to write user.login everytime instead we can simply write login and thats it
 function UserItem({ user: { login, avatar_url } }) {
   return (
