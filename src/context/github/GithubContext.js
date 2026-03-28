@@ -25,18 +25,18 @@ export const GithubProvider = ({ children }) => {
   // 1) Calls API
   // 2) Gets data
   // 3) Stores it in users
-  const searchUsers = async (text) => {
-    setLoading();
-    const params=new URLSearchParams({
-      q:text
-    })
-    const response = await fetch(`${GITHUB_URL}/search/users?${params}`);
-    const {items} = await response.json();
-    dispatch({
-      type:"GET_USERS",
-      payload:items,
-    })
-  };
+  // const searchUsers = async (text) => {
+  //   setLoading();
+  //   const params=new URLSearchParams({
+  //     q:text
+  //   })
+  //   const response = await fetch(`${GITHUB_URL}/search/users?${params}`);
+  //   const {items} = await response.json();
+  //   dispatch({
+  //     type:"GET_USERS",
+  //     payload:items,
+  //   })
+  // };
 
 //Search function for Single User:-
 const  getUser= async (login) => {
@@ -81,7 +81,7 @@ const  getUser= async (login) => {
     // 1) users
     // 2) loading
     // 3) fetchUsers
-    <GithubContext.Provider value={{ users:state.users, loading:state.loading,user:state.user,repos:state.repos, searchUsers,clearUsers,getUser,getUserRepos, }}>
+    <GithubContext.Provider value={{...state, dispatch,clearUsers,getUser,getUserRepos, }}>
       {/* What is {children}?
       This means:
       “Whatever is wrapped inside GithubProvider in App.js” */}
@@ -90,3 +90,9 @@ const  getUser= async (login) => {
   );
 };
 export default GithubContext;
+
+
+
+
+// if required in Provider:-
+//  users:state.users, loading:state.loading,user:state.user,repos:state.repos
