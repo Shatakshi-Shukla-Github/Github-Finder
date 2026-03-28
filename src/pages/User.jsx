@@ -4,11 +4,14 @@ import GithubContext from "../context/github/GithubContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Spinner from "../components/layout/assets/Spinner";
+import RepoList from "../components/repos/RepoList";
 function User() {
   const params = useParams();
-  const { getUser, user, loading } = useContext(GithubContext);
+  const { getUser, user, loading, getUserRepos, repos } =
+    useContext(GithubContext);
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
   }, [params.login]);
 
   // How do we KNOW user has all these properties like avatar_url, followers, etc.?
@@ -151,6 +154,7 @@ function User() {
               </div>
             </div>
           </div>
+          <RepoList repos={repos} />
         </div>
       </>
     );
