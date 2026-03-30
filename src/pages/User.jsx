@@ -5,14 +5,22 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Spinner from "../components/layout/assets/Spinner";
 import RepoList from "../components/repos/RepoList";
+import { getUser, getUserRepos } from "../context/github/GithubActions";
 function User() {
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
   const params = useParams();
-  const { getUser, user, loading, getUserRepos, repos } =
-    useContext(GithubContext);
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
-  }, [params.login]);
+    dispatch({ type: "SET_LOADING" });
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: "GET_USER", payload: userData });
+
+      const userRepoData = await getUserRepos(params.login);
+      dispatch({ type: "GET_REPOS", payload: userRepoData });
+    };
+
+    getUserData();
+  }, [dispatch, params.login]);
 
   // How do we KNOW user has all these properties like avatar_url, followers, etc.?
   // ANS:-These properties come from the GitHub API response

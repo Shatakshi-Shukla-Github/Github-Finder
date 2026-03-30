@@ -5,7 +5,6 @@ import githubReducer from "./GithubReducer";
 
 // This creates an empty container:-
 const GithubContext = createContext();
-const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 
 // This is the main boss component. Think of it as:- Provider = the one who fills the box
 export const GithubProvider = ({ children }) => {
@@ -39,39 +38,38 @@ export const GithubProvider = ({ children }) => {
   // };
 
 //Search function for Single User:-
-const  getUser= async (login) => {
-    setLoading();
-    let response = await fetch(`${GITHUB_URL}/users/${login}`);
-    if(response.status===404){
-      window.location="/notfound"
-    }else{
-     const data = await response.json();
-    dispatch({
-      type:"GET_USER",
-      payload:data,
-    }) 
-    }
-  };
+// const  getUser= async (login) => {
+//     setLoading();
+//     let response = await fetch(`${GITHUB_URL}/users/${login}`);
+//     if(response.status===404){
+//       window.location="/notfound"
+//     }else{
+//      const data = await response.json();
+//     dispatch({
+//       type:"GET_USER",
+//       payload:data,
+//     }) 
+//     }
+//   };
 
 
-  //Get User Repos:-
-  const getUserRepos=async (login) => {
-    setLoading();
-    const params=new URLSearchParams({
-      sort:"created",
-      per_page:10,
-    })
-    const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`);
-    const data = await response.json();
-    dispatch({
-      type:"GET_REPOS",
-      payload:data,
-    })
-  }
+//   //Get User Repos:-
+//   const getUserRepos=async (login) => {
+//     setLoading();
+//     const params=new URLSearchParams({
+//       sort:"created",
+//       per_page:10,
+//     })
+//     const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`);
+//     const data = await response.json();
+//     dispatch({
+//       type:"GET_REPOS",
+//       payload:data,
+//     })
+//   }
 
 
-  const clearUsers=()=>dispatch({type:"CLEAR_USERS"})
-  const setLoading=()=>dispatch({type:"SET_LOADING"})
+
   // const clearUsers=()=>{
   //   dispatch({type:"DELETE_USERS"})
   // }
@@ -81,7 +79,7 @@ const  getUser= async (login) => {
     // 1) users
     // 2) loading
     // 3) fetchUsers
-    <GithubContext.Provider value={{...state, dispatch,clearUsers,getUser,getUserRepos, }}>
+    <GithubContext.Provider value={{...state, dispatch, }}>
       {/* What is {children}?
       This means:
       “Whatever is wrapped inside GithubProvider in App.js” */}
