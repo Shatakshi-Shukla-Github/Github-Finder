@@ -1,5 +1,5 @@
 <h1>GitHub Finder</h1>
-<b>Live Demo:-</b> <a href="https://github-finder-laqzratq1-shatakshi-shukla-githubs-projects.vercel.app">Github-Finder-App</a>
+<p><b>Live Demo:-</b> <a href="https://github-finder-laqzratq1-shatakshi-shukla-githubs-projects.vercel.app">Github-Finder-App</a></p>
 
 <p>GitHub Finder is a React-based web application that allows users to search for GitHub profiles and view detailed information about them. The application integrates with the GitHub REST API to retrieve real-time user data and present it in a structured and intuitive interface.</p>
 
