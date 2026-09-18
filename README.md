@@ -7,15 +7,18 @@
 <h2>List of Features</h2>
 
 <ul>
+  <p>
   <li><b>Interactive Profile Search & Discovery</b>:- Easily search for any GitHub user and browse through profile pictures in a clean grid layout to find who you are looking for</li>
   <img width="1920" height="874" alt="Github Finder Search- Edited" src="https://github.com/user-attachments/assets/9e13f26f-9faa-425f-8ccd-3677cb17a071" />
-
+  </p>
+  <p>
   <li><b>Comprehensive User Profile Dashboard</b>:- Detailed developer overview page showcasing key statistics (Followers, Following, Public Repos, and Gists), location data, and a direct link to the external GitHub profile.</li>
   <img width="1920" height="876" alt="Github Finder Profile- Edited" src="https://github.com/user-attachments/assets/c6e56296-1d80-4b79-8f4d-6b3f08be99ab" />
-
+  </p>
+  <p>
 <li><b>Latest Repositories Feed</b>:- Dynamic repository listing view that highlights recent user projects complete with repository names, descriptions, watch/star counts, issue counts, and fork metrics.</li>
 <img width="1920" height="876" alt="Github Finder Latest- Edited" src="https://github.com/user-attachments/assets/9f1f928c-c292-430f-8315-93c93d70b207" />
-
+  </p>
 </ul>
 
 <!-- <p>The project demonstrates the use of modern React practices, including functional components, hooks, and global state management using the Context API and useReducer. Axios is used for handling HTTP requests, enabling efficient and structured communication with external APIs. Client-side routing is implemented using React Router to support dynamic navigation between pages, including user-specific profile routes.</p>
